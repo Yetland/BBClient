@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+def androidExt = rootProject.ext.android
+def buildVersion = androidExt.buildToolsVersion
+android {
+    compileSdkVersion androidExt.compileSdkVersion
+    defaultConfig {
+        applicationId "com.yetland.bbclient"
+        minSdkVersion androidExt.minSdkVersion
+        targetSdkVersion androidExt.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:$buildVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
+    implementation "com.google.dagger:dagger:$androidExt.dagger2"
+    annotationProcessor "com.google.dagger:dagger-compiler:$androidExt.dagger2AnnotationProcessor"
+
+    implementation "io.reactivex:rxandroid:$androidExt.rxandroid"
+    implementation "io.reactivex:rxjava:$androidExt.rxjava"
+    
+    implementation "com.google.code.gson:gson:$androidExt.gson"
+    implementation "com.squareup.retrofit2:retrofit:$androidExt.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$androidExt.converterGson"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$androidExt.adapterRxjava"
+    implementation "com.squareup.retrofit2:converter-scalars:$androidExt.converterScalars"
+    implementation "com.squareup.okhttp3:logging-interceptor:$androidExt.okhttp3Logging"
+    implementation "com.squareup.okhttp3:okhttp:$androidExt.okhttp3"
+
+    implementation project(":base")
+    implementation project(":data")
+}
