@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 def androidExt = rootProject.ext.android
 def buildVersion = androidExt.buildToolsVersion
 android {
@@ -35,7 +37,7 @@ dependencies {
 
 
     implementation "com.google.dagger:dagger:$androidExt.dagger2"
-    annotationProcessor "com.google.dagger:dagger-compiler:$androidExt.dagger2AnnotationProcessor"
+    kapt "com.google.dagger:dagger-compiler:$androidExt.dagger2AnnotationProcessor"
 
     implementation "io.reactivex:rxandroid:$androidExt.rxandroid"
     implementation "io.reactivex:rxjava:$androidExt.rxjava"
