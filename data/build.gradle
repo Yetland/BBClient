@@ -16,11 +16,14 @@ android {
 
     buildTypes {
         release {
+            buildConfigField('String', 'BUILD_ENV_TYPE', '"pro"')
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            buildConfigField('String', 'BUILD_ENV_TYPE', '"pro"')
+        }
     }
-
 }
 
 dependencies {

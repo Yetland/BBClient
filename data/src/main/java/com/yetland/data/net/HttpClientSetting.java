@@ -20,13 +20,48 @@ public class HttpClientSetting {
     private HttpLoggingInterceptor mHttpLoggingInterceptor;
     private Interceptor mHeaderInterceptor;
     private OkHttpClient mOkHttpClient;
-    private String mBaseUrl;
+    private String mBaseUrl = "https://leancloud.cn:443/1.1/";
+    private String mId = "hq5TP1JfC8IalSWXQCYNwVk4-gzGzoHsz";
+    private String mKey = "O51KjzzevmasxS3RRCbTDwq0";
+
+    private HttpClientSetting mHttpClientSetting;
+
+    public static class Builder {
+        String mBaseUrl;
+        String mId;
+        String mKey;
+
+        public Builder baseUrl(String baseUrl) {
+            this.mBaseUrl = baseUrl;
+            return this;
+        }
+
+        public Builder id(String id) {
+            this.mId = id;
+            return this;
+        }
+
+        public Builder key(String key) {
+            this.mKey = key;
+            return this;
+        }
+
+        public HttpClientSetting build() {
+            return new HttpClientSetting(mBaseUrl, mId, mKey);
+        }
+    }
+
+    HttpClientSetting(String baseUrl, String id, String key) {
+        super();
+        mBaseUrl = baseUrl;
+        mId = id;
+        mKey = key;
+    }
 
     public HttpClientSetting() {
         initHttpLoggingInterceptor();
         initHeaderInterceptor();
         initHttpClient();
-        mBaseUrl = "https://leancloud.cn:443/1.1/";
     }
 
     private void initHttpClient() {
@@ -45,8 +80,8 @@ public class HttpClientSetting {
             public Response intercept(@NonNull Chain chain) throws IOException {
                 Request request = chain.request();
                 return chain.proceed(request.newBuilder()
-                        .addHeader("x-avoscloud-application-id", "hq5TP1JfC8IalSWXQCYNwVk4-gzGzoHsz")
-                        .addHeader("x-avoscloud-application-key", "O51KjzzevmasxS3RRCbTDwq0")
+                        .addHeader("x-avoscloud-application-id", mId)
+                        .addHeader("x-avoscloud-application-key", mKey)
                         .addHeader("Content-Type", "application/json")
                         .method(request.method(), request.body())
                         .build());

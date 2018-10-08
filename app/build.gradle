@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 def androidExt = rootProject.ext.android
 def buildVersion = androidExt.buildToolsVersion
 android {
@@ -22,6 +24,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "default"
+
+    productFlavors {
+        // 开发环境
+        devEnveriment {
+            dimension "default"
+            buildConfigField('String', 'BUILD_ENV_TYPE', '"dev"')
+            buildConfigField('String', 'BASE_URL', '"https://leancloud.cn:443/1.1/"')
+            buildConfigField('String', 'ID', '"hq5TP1JfC8IalSWXQCYNwVk4-gzGzoHsz"')
+            buildConfigField('String', 'KEY', '"O51KjzzevmasxS3RRCbTDwq0"')
+            buildConfigField('String', 'BUILD_NUMBER_TYPE', '"01"')
+        }
+        // 正式环境
+        proEnveriment {
+            dimension "default"
+            buildConfigField('String', 'BUILD_ENV_TYPE', '"pro"')
+            buildConfigField('String', 'BASE_URL', '"https://leancloud.cn:443/1.1/"')
+            buildConfigField('String', 'ID', '"hq5TP1JfC8IalSWXQCYNwVk4-gzGzoHsz"')
+            buildConfigField('String', 'KEY', '"f78B7WYtE8aChrxlcgzt50ea"')
+            buildConfigField('String', 'BUILD_NUMBER_TYPE', '"02"')
+        }
+    }
 }
 
 dependencies {
@@ -35,11 +59,11 @@ dependencies {
 
 
     implementation "com.google.dagger:dagger:$androidExt.dagger2"
-    annotationProcessor "com.google.dagger:dagger-compiler:$androidExt.dagger2AnnotationProcessor"
+    kapt "com.google.dagger:dagger-compiler:$androidExt.dagger2AnnotationProcessor"
 
     implementation "io.reactivex:rxandroid:$androidExt.rxandroid"
     implementation "io.reactivex:rxjava:$androidExt.rxjava"
-    
+
     implementation "com.google.code.gson:gson:$androidExt.gson"
     implementation "com.squareup.retrofit2:retrofit:$androidExt.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$androidExt.converterGson"
@@ -47,6 +71,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:$androidExt.converterScalars"
     implementation "com.squareup.okhttp3:logging-interceptor:$androidExt.okhttp3Logging"
     implementation "com.squareup.okhttp3:okhttp:$androidExt.okhttp3"
+
+    implementation "com.github.bumptech.glide:glide:$androidExt.glide"
 
     implementation project(":base")
     implementation project(":data")
