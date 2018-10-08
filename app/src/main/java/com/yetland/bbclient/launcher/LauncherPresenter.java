@@ -1,10 +1,11 @@
 package com.yetland.bbclient.launcher;
 
+import com.yetland.base.base.BaseActivity;
 import com.yetland.base.base.BasePresenter;
-import com.yetland.data.entity.Launcher;
-import com.yetland.data.entity.resp.LauncherResp;
 
-import rx.functions.Action1;
+import javax.inject.Inject;
+
+import rx.Subscription;
 
 /**
  * @author YETLAND
@@ -12,27 +13,27 @@ import rx.functions.Action1;
  */
 public class LauncherPresenter extends BasePresenter<LauncherModel, LauncherView> {
 
+    private Subscription mSubscription;
+    @Inject
+    LauncherPresenter(BaseActivity baseActivity, LauncherModel launcherModel) {
+        super(baseActivity, launcherModel);
+    }
 
-    public LauncherPresenter(LauncherModel launcherModel, LauncherView launcherView) {
-        super(launcherModel, launcherView);
+    @Override
+    public void onDestroy() {
+        if (mSubscription != null && mSubscription.isUnsubscribed()){
+            mSubscription.unsubscribe();
+        }
     }
 
     void getLauncher() {
-        mM.getLauncher().subscribe(new Action1<LauncherResp<Launcher>>() {
-            @Override
-            public void call(LauncherResp<Launcher> launcherLauncherResp) {
-                if (launcherLauncherResp.getResults() != null
-                        && launcherLauncherResp.getResults().size() > 0) {
-                    mV.success(launcherLauncherResp.getResults().get(0));
-                } else {
-                    mV.failed("null");
-                }
+        mSubscription = mM.getLauncher().subscribe(launcherLauncherResp -> {
+            if (launcherLauncherResp.getResults() != null
+                    && launcherLauncherResp.getResults().size() > 0) {
+                mV.success(launcherLauncherResp.getResults().get(0));
+            } else {
+                mV.failed("null");
             }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                mV.failed(throwable.getMessage());
-            }
-        });
+        }, throwable -> mV.failed(throwable.getMessage()));
     }
 }

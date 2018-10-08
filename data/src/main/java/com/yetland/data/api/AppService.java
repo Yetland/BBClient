@@ -11,6 +11,6 @@ import retrofit2.http.GET;
  * Date: 2018/9/29.
  */
 public interface AppService {
-    @GET("Launcher")
+    @GET("classes/Launcher")
     Call<LauncherResp<Launcher>> getLauncher();
 }

@@ -17,6 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -45,6 +46,10 @@ android {
             buildConfigField('String', 'KEY', '"f78B7WYtE8aChrxlcgzt50ea"')
             buildConfigField('String', 'BUILD_NUMBER_TYPE', '"02"')
         }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
 }
 

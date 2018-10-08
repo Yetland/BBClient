@@ -1,7 +1,7 @@
 package com.yetland.bbclient.launcher;
 
 import com.yetland.base.base.BaseModel;
-import com.yetland.data.api.AppServiceImpl;
+import com.yetland.data.api.AppApiImpl;
 import com.yetland.data.entity.Launcher;
 import com.yetland.data.entity.resp.LauncherResp;
 
@@ -15,10 +15,10 @@ import rx.Observable;
  */
 public class LauncherModel extends BaseModel {
 
-    private AppServiceImpl mAppService;
+    private AppApiImpl mAppService;
 
     @Inject
-    public LauncherModel(AppServiceImpl appService) {
+    public LauncherModel(AppApiImpl appService) {
         mAppService = appService;
     }
 

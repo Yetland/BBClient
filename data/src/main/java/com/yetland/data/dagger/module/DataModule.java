@@ -3,6 +3,7 @@ package com.yetland.data.dagger.module;
 import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
+import com.yetland.data.api.AppApiImpl;
 import com.yetland.data.api.AppService;
 import com.yetland.data.api.UserApiImpl;
 import com.yetland.data.api.UserService;
@@ -23,34 +24,31 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DataModule {
 
 
-    private HttpClientSetting mHttpClientSetting;
-    private Retrofit mUserRetrofit;
-    private Retrofit mAppRetrofit;
     private UserService mUserService;
     private AppService mAppService;
 
     public DataModule() {
-        mHttpClientSetting = new HttpClientSetting();
-        mUserRetrofit = provideUserRetrofit(mHttpClientSetting.getOkHttpClient(),
-                mHttpClientSetting.getBaseUrl());
+        HttpClientSetting httpClientSetting = new HttpClientSetting();
+        Retrofit userRetrofit = provideUserRetrofit(httpClientSetting.getOkHttpClient(),
+                httpClientSetting.getBaseUrl());
 
-        mAppRetrofit = provideAppRetrofit(mHttpClientSetting.getOkHttpClient(),
-                mHttpClientSetting.getBaseUrl());
+        Retrofit appRetrofit = provideAppRetrofit(httpClientSetting.getOkHttpClient(),
+                httpClientSetting.getBaseUrl());
 
-        mUserService = provideUserService(mUserRetrofit);
-        mAppService = provideAppService(mAppRetrofit);
+        mUserService = provideUserService(userRetrofit);
+        mAppService = provideAppService(appRetrofit);
     }
 
-    AppService provideAppService(@NonNull Retrofit retrofit) {
+    private AppService provideAppService(@NonNull Retrofit retrofit) {
         return retrofit.create(AppService.class);
     }
 
 
-    UserService provideUserService(@NonNull Retrofit retrofit) {
+    private UserService provideUserService(@NonNull Retrofit retrofit) {
         return retrofit.create(UserService.class);
     }
 
-    Retrofit provideUserRetrofit(OkHttpClient okHttpClient, String baseUrl) {
+    private Retrofit provideUserRetrofit(OkHttpClient okHttpClient, String baseUrl) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
@@ -59,7 +57,7 @@ public class DataModule {
                 .build();
     }
 
-    Retrofit provideAppRetrofit(OkHttpClient okHttpClient, String baseUrl) {
+    private Retrofit provideAppRetrofit(OkHttpClient okHttpClient, String baseUrl) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
@@ -71,5 +69,10 @@ public class DataModule {
     @Provides
     UserApiImpl provideUserApi() {
         return new UserApiImpl(mUserService);
+    }
+
+    @Provides
+    AppApiImpl provideAppServiceImpl(){
+        return new AppApiImpl(mAppService);
     }
 }

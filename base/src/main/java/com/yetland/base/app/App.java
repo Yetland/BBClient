@@ -1,6 +1,7 @@
 package com.yetland.base.app;
 
 import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.yetland.base.dagger.component.AppComponent;
 import com.yetland.base.dagger.component.DaggerAppComponent;
@@ -13,7 +14,7 @@ import com.yetland.data.dagger.module.DataModule;
  * Author: Yet_land
  * Date: 2018/9/29.
  */
-public class App extends Application {
+public class App extends MultiDexApplication {
     private DataComponent mDataComponent;
     private AppComponent mAppComponent;
 

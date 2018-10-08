@@ -28,7 +28,12 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:$buildVersion"
 
+    implementation "com.android.support:design:$buildVersion"
     testImplementation 'junit:junit:4.12'
+
+    implementation project(":base")
+    implementation project(":data")
+
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

@@ -17,12 +17,12 @@ import rx.schedulers.Schedulers;
  * Author: Yet_land
  * Date: 2018/9/29.
  */
-public class AppServiceImpl extends BaseApi implements AppApi {
+public class AppApiImpl extends BaseApi implements AppApi {
 
     private AppService mAppService;
 
     @Inject
-    public AppServiceImpl(AppService appService) {
+    public AppApiImpl(AppService appService) {
         mAppService = appService;
     }
 
