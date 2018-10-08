@@ -31,7 +31,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         mContext = this;
         daggerInit();
         inject();
+        setContentView(getLayoutId());
+        findViews();
+        init();
     }
+
+    protected abstract void init();
+
+    protected abstract void findViews();
+
+    protected abstract int getLayoutId();
 
     private void daggerInit() {
 
