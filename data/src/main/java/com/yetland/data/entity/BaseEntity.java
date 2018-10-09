@@ -8,4 +8,6 @@ public class BaseEntity {
     String updatedAt;
     String objectId;
     String createdAt;
+    int code;
+    String error;
 }

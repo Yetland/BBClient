@@ -1,6 +1,5 @@
 package com.yetland.bbclient;
 
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -26,13 +25,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mMainModel.login(mEditText.getText().toString(),
-                        mEditText2.getText().toString());
-            }
-        });
+        mButton.setOnClickListener(v -> mMainModel.login(mEditText.getText().toString(),
+                mEditText2.getText().toString()));
     }
 
     @Override
