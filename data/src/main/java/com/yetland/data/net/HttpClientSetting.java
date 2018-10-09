@@ -15,6 +15,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 /**
  * Author: Yet_land
  * Date: 2018/9/29.
+ *
+ * @author YETLAND
  */
 public class HttpClientSetting {
     private HttpLoggingInterceptor mHttpLoggingInterceptor;

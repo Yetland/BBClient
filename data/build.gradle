@@ -24,6 +24,10 @@ android {
             buildConfigField('String', 'BUILD_ENV_TYPE', '"pro"')
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 dependencies {
@@ -42,7 +46,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:$androidExt.converterScalars"
     implementation "com.squareup.okhttp3:logging-interceptor:$androidExt.okhttp3Logging"
     implementation "com.squareup.okhttp3:okhttp:$androidExt.okhttp3"
-
+    // 工具类的依赖
+    implementation "com.blankj:utilcode:$androidExt.utilCode"
 
     implementation "com.google.dagger:dagger:$androidExt.dagger2"
     annotationProcessor "com.google.dagger:dagger-compiler:$androidExt.dagger2AnnotationProcessor"

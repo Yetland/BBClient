@@ -77,6 +77,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$androidExt.okhttp3Logging"
     implementation "com.squareup.okhttp3:okhttp:$androidExt.okhttp3"
 
+    implementation "com.blankj:utilcode:$androidExt.utilCode"
     implementation "com.github.bumptech.glide:glide:$androidExt.glide"
 
     implementation project(":base")

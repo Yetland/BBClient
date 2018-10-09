@@ -10,7 +10,7 @@ import com.yetland.data.entity.Launcher;
 public interface LauncherView extends BaseView {
     void getLauncher();
 
-    void show();
+    void show(String imgUrl);
 
     void success(Launcher launcher);
 

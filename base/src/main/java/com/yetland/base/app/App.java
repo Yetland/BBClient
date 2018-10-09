@@ -1,8 +1,9 @@
 package com.yetland.base.app;
 
-import android.app.Application;
 import android.support.multidex.MultiDexApplication;
 
+import com.blankj.utilcode.util.CrashUtils;
+import com.blankj.utilcode.util.Utils;
 import com.yetland.base.dagger.component.AppComponent;
 import com.yetland.base.dagger.component.DaggerAppComponent;
 import com.yetland.base.dagger.module.AppModule;
@@ -23,6 +24,9 @@ public class App extends MultiDexApplication {
         super.onCreate();
         initDataComponent();
         initAppComponent();
+
+        Utils.init(this);
+        CrashUtils.init();
     }
 
     private void initDataComponent() {
