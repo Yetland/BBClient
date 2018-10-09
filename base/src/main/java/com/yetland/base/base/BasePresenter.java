@@ -1,5 +1,7 @@
 package com.yetland.base.base;
 
+import rx.Subscription;
+
 /**
  * @author YETLAND
  * @date 2018/10/8 16:55
@@ -31,5 +33,11 @@ public abstract class BasePresenter<M, V> {
     }
 
     public abstract void onDestroy();
+
+    public void unsubscribe(Subscription subscription) {
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
+    }
 }
 

@@ -14,6 +14,7 @@ import rx.Subscription;
 public class LauncherPresenter extends BasePresenter<LauncherModel, LauncherView> {
 
     private Subscription mSubscription;
+
     @Inject
     LauncherPresenter(BaseActivity baseActivity, LauncherModel launcherModel) {
         super(baseActivity, launcherModel);
@@ -21,9 +22,7 @@ public class LauncherPresenter extends BasePresenter<LauncherModel, LauncherView
 
     @Override
     public void onDestroy() {
-        if (mSubscription != null && mSubscription.isUnsubscribed()){
-            mSubscription.unsubscribe();
-        }
+        unsubscribe(mSubscription);
     }
 
     void getLauncher() {

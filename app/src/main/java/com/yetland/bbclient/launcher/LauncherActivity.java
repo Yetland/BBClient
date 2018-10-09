@@ -3,6 +3,7 @@ package com.yetland.bbclient.launcher;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -11,6 +12,7 @@ import com.google.gson.Gson;
 import com.yetland.base.base.BaseMvpActivity;
 import com.yetland.base.base.BasePresenter;
 import com.yetland.base.data.SPUtil;
+import com.yetland.base.view.BBButton;
 import com.yetland.bbclient.MainActivity;
 import com.yetland.bbclient.R;
 import com.yetland.bbclient.dagger.component.DaggerActivityComponent;
@@ -42,6 +44,7 @@ public class LauncherActivity extends BaseMvpActivity implements LauncherView {
         getLauncher();
         mDelayHandler = new DelayHandler(this, mButtonSkip);
         mDelayHandler.sendEmptyMessageDelayed(DEFAULT, 3000);
+        mButtonSkip.setOnClickListener(v -> mDelayHandler.sendEmptyMessage(DEFAULT));
     }
 
     @Override
@@ -70,10 +73,7 @@ public class LauncherActivity extends BaseMvpActivity implements LauncherView {
             super.handleMessage(msg);
             mLauncherActivity = mReference.get();
             mButton = mReferenceSkip.get();
-
             int what = msg.what;
-            int obj = (Integer) msg.obj;
-
             switch (what) {
                 case DEFAULT:
                     removeCallbacksAndMessages(null);
@@ -82,6 +82,7 @@ public class LauncherActivity extends BaseMvpActivity implements LauncherView {
                     }
                     break;
                 case SUCCESS:
+                    int obj = (Integer) msg.obj;
                     if (mButton != null) {
                         mButton.setText(String.valueOf(obj / 1000));
                     }
@@ -131,7 +132,7 @@ public class LauncherActivity extends BaseMvpActivity implements LauncherView {
 
     @Override
     public void success(Launcher launcher) {
-        SPUtil.save("launcher", launcher);
+        SPUtil.save(KEY, launcher);
 
         Message message = new Message();
         message.what = SUCCESS;

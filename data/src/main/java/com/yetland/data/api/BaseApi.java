@@ -17,6 +17,10 @@ class BaseApi {
     static final String NETWORK_ERROR = "连接服务器失败";
 
     <T> void execute(Call<T> call, Subscriber<? super T> subscriber) {
+        execute(call, subscriber, false);
+    }
+
+    <T> void execute(Call<T> call, Subscriber<? super T> subscriber, boolean cache) {
         if (!NetworkUtils.isConnected()) {
             subscriber.onError(new Throwable(NETWORK_ERROR));
         } else {
@@ -34,4 +38,5 @@ class BaseApi {
         }
         subscriber.onCompleted();
     }
+
 }
