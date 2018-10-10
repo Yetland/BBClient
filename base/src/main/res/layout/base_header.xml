@@ -32,7 +32,8 @@
                 android:maxLines="1"
                 android:text="左边"
                 android:textColor="@color/app_normal_text_color"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
         </FrameLayout>
 
         <LinearLayout
@@ -68,7 +69,8 @@
                 android:maxLines="1"
                 android:text="右边"
                 android:textColor="@color/app_normal_text_color"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 

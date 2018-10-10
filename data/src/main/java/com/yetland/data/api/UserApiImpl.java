@@ -24,8 +24,7 @@ public class UserApiImpl extends BaseApi implements UserApi {
     @Override
     public Observable<User> login(final String username, final String password) {
         return Observable.create((Observable.OnSubscribe<User>) subscriber -> {
-            Call<User> call = mUserService.login(username, password);
-            execute(call, subscriber);
+            execute(mUserService.login(username, password), subscriber);
         }).compose(RxScheduler.main());
     }
 }

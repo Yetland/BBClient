@@ -1,8 +1,6 @@
 package com.yetland.data.api;
 
 
-import android.text.TextUtils;
-
 import com.blankj.utilcode.util.NetworkUtils;
 import com.google.gson.Gson;
 import com.yetland.data.entity.ErrorEntity;

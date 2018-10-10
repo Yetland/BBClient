@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BBClient</string>
+    <string name="register">REGISTER</string>
 </resources>

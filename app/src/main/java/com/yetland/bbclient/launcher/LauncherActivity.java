@@ -40,6 +40,16 @@ public class LauncherActivity extends BaseMvpActivity implements LauncherView {
     private static final int SUCCESS = 2;
 
     @Override
+    protected String getTitleText() {
+        return null;
+    }
+
+    @Override
+    protected boolean isShowTitleBar() {
+        return false;
+    }
+
+    @Override
     protected void init() {
         getLauncher();
         mDelayHandler = new DelayHandler(this, mButtonSkip);

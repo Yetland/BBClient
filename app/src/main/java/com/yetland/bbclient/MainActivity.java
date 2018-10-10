@@ -24,6 +24,16 @@ public class MainActivity extends BaseActivity {
     Button mButton;
 
     @Override
+    protected String getTitleText() {
+        return "登录";
+    }
+
+    @Override
+    protected boolean isShowTitleBar() {
+        return true;
+    }
+
+    @Override
     protected void init() {
         mButton.setOnClickListener(v -> mMainModel.login(mEditText.getText().toString(),
                 mEditText2.getText().toString()));

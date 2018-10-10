@@ -34,7 +34,7 @@ public abstract class BasePresenter<M, V> {
 
     public abstract void onDestroy();
 
-    public void unsubscribe(Subscription subscription) {
+    protected void unsubscribe(Subscription subscription) {
         if (subscription != null && !subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }
