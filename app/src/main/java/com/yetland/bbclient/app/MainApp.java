@@ -7,6 +7,8 @@ import com.yetland.data.DataCenter;
 /**
  * Author: Yet_land
  * Date: 2018/9/29.
+ *
+ * @author YETLAND
  */
 public class MainApp extends App {
 

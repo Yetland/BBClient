@@ -25,8 +25,8 @@ public class AppApiImpl extends BaseApi implements AppApi {
 
     @Override
     public Observable<LauncherResp<Launcher>> getLauncher() {
-        return Observable.create((Observable.OnSubscribe<LauncherResp<Launcher>>) subscriber -> {
-            execute(mAppService.getLauncher(), subscriber);
-        }).compose(RxScheduler.main());
+        return Observable.create((Observable.OnSubscribe<LauncherResp<Launcher>>)
+                subscriber -> execute(mAppService.getLauncher(), subscriber))
+                .compose(RxScheduler.main());
     }
 }

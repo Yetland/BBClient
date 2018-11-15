@@ -13,20 +13,14 @@ import rx.Subscription;
  */
 public class LauncherPresenter extends BasePresenter<LauncherModel, LauncherView> {
 
-    private Subscription mSubscription;
 
     @Inject
     LauncherPresenter(BaseActivity baseActivity, LauncherModel launcherModel) {
         super(baseActivity, launcherModel);
     }
 
-    @Override
-    public void onDestroy() {
-        unsubscribe(mSubscription);
-    }
-
     void getLauncher() {
-        mSubscription = mM.getLauncher().subscribe(launcherLauncherResp -> {
+        Subscription subscription = mM.getLauncher().subscribe(launcherLauncherResp -> {
             if (launcherLauncherResp.getResults() != null
                     && launcherLauncherResp.getResults().size() > 0) {
                 mV.success(launcherLauncherResp.getResults().get(0));
@@ -34,5 +28,6 @@ public class LauncherPresenter extends BasePresenter<LauncherModel, LauncherView
                 mV.failed("null");
             }
         }, throwable -> mV.failed(throwable.getMessage()));
+        addSubscription(subscription);
     }
 }
