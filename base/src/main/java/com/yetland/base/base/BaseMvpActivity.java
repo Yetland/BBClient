@@ -15,10 +15,11 @@ public abstract class BaseMvpActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBasePresenter = getPresenter();
-        setView();
+        if (this instanceof BaseView && mBasePresenter != null) {
+            mBasePresenter.setV(this);
+        }
     }
 
-    protected abstract void setView();
 
     protected abstract BasePresenter getPresenter();
 

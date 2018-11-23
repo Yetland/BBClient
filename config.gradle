@@ -1,8 +1,8 @@
 ext {
 
     android = [
-            compileSdkVersion         : 26,
-            buildToolsVersion         : "26.1.0",
+            compileSdkVersion         : 28,
+            buildToolsVersion         : "28.0.0",
 
             minSdkVersion             : 15,
             targetSdkVersion          : 25,
@@ -21,7 +21,10 @@ ext {
             utilCode                  : '1.7.1',
             multiDex                  : '1.0.1',
             multitype                 : '3.3.3',
-            SmartRefreshLayout        : '1.0.5.1'
+            constraint                 : '1.1.3',
+            SmartRefreshLayout        : '1.0.5.1',
+            butterknife               : '8.8.1',
+            butterknifeCompiler       : '8.8.1'
 
     ]
     dependencies = [

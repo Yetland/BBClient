@@ -7,12 +7,9 @@ import com.yetland.data.entity.Launcher;
  * @author YETLAND
  * @date 2018/10/8 16:58
  */
-public interface LauncherView extends BaseView {
+public interface LauncherView extends BaseView<Launcher> {
     void getLauncher();
 
     void show(String imgUrl);
 
-    void success(Launcher launcher);
-
-    void failed(String msg);
 }

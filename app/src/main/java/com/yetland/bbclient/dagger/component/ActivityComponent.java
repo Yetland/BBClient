@@ -1,6 +1,7 @@
 package com.yetland.bbclient.dagger.component;
 
 import com.yetland.base.dagger.component.AppComponent;
+import com.yetland.bbclient.login.LoginActivity;
 import com.yetland.bbclient.MainActivity;
 import com.yetland.bbclient.dagger.module.ActivityModule;
 import com.yetland.bbclient.launcher.LauncherActivity;
@@ -17,6 +18,8 @@ import dagger.Component;
 public interface ActivityComponent {
 
     void inject(MainActivity mainActivity);
+
+    void injectLogin(LoginActivity loginActivity);
 
     void injectLauncher(LauncherActivity launcherActivity);
 }

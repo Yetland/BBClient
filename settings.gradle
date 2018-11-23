@@ -1,1 +1,1 @@
-include ':app', ':base', ':data', ':home', ':mine', ':news', ':search', ':adapterlib'
+include ':app', ':base', ':data', ':home', ':mine', ':news', ':search', ':adapterlib', ':view'

@@ -3,20 +3,22 @@ package com.yetland.bbclient.launcher;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.yetland.base.base.BaseModel;
 import com.yetland.base.base.BaseMvpActivity;
 import com.yetland.base.base.BasePresenter;
+import com.yetland.base.base.BaseView;
 import com.yetland.base.data.SPUtil;
-import com.yetland.base.view.BBButton;
 import com.yetland.bbclient.MainActivity;
 import com.yetland.bbclient.R;
 import com.yetland.bbclient.dagger.component.DaggerActivityComponent;
 import com.yetland.bbclient.dagger.module.ActivityModule;
+import com.yetland.bbclient.login.LoginActivity;
+import com.yetland.bbclient.main.Main2Activity;
 import com.yetland.data.entity.Launcher;
 
 import java.lang.ref.WeakReference;
@@ -88,7 +90,7 @@ public class LauncherActivity extends BaseMvpActivity implements LauncherView {
                 case DEFAULT:
                     removeCallbacksAndMessages(null);
                     if (mLauncherActivity != null && !mLauncherActivity.isFinishing()) {
-                        mLauncherActivity.turnToNext(MainActivity.class, true);
+                        mLauncherActivity.turnToNext(Main2Activity.class, true);
                     }
                     break;
                 case SUCCESS:
@@ -141,6 +143,11 @@ public class LauncherActivity extends BaseMvpActivity implements LauncherView {
     }
 
     @Override
+    public void loading(String msg) {
+
+    }
+
+    @Override
     public void success(Launcher launcher) {
         SPUtil.save(KEY, launcher);
 
@@ -159,11 +166,6 @@ public class LauncherActivity extends BaseMvpActivity implements LauncherView {
             Launcher launcher = new Gson().fromJson(value, Launcher.class);
             success(launcher);
         }
-    }
-
-    @Override
-    protected void setView() {
-        mLauncherPresenter.setV(this);
     }
 
     @Override

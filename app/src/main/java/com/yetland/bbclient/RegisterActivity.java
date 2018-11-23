@@ -39,11 +39,6 @@ public class RegisterActivity extends BaseMvpActivity {
     }
 
     @Override
-    protected void setView() {
-
-    }
-
-    @Override
     protected BasePresenter getPresenter() {
         return null;
     }

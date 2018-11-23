@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import com.yetland.data.dagger.component.DataComponent;
  * Date: 2018/9/29.
  */
 public abstract class BaseActivity extends Activity {
+    protected BaseActivity mBaseActivity;
     protected Activity mActivity;
     protected Context mContext;
     protected App mApp;
@@ -31,6 +33,7 @@ public abstract class BaseActivity extends Activity {
     protected TextView mTvLeft;
     protected TextView mTvRight;
     protected ImageView mIvBack;
+    protected View mBaseViewLine;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public abstract class BaseActivity extends Activity {
         mDataComponent = mApp.getDataComponent();
         mActivity = this;
         mContext = this;
+        mBaseActivity = this;
         daggerInit();
         inject();
         setContentView(getLayoutId());
@@ -50,6 +54,8 @@ public abstract class BaseActivity extends Activity {
             mTvRight = findViewById(R.id.base_tv_right);
 
             mIvBack = findViewById(R.id.base_iv_back);
+
+            mBaseViewLine = findViewById(R.id.base_view_line);
             mIvBack.setOnClickListener(v -> onBackClick());
 
             String title = getTitleText();

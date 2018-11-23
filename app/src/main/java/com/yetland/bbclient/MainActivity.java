@@ -3,18 +3,18 @@ package com.yetland.bbclient;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.yetland.base.base.BaseActivity;
-import com.yetland.bbclient.dagger.component.ActivityComponent;
-import com.yetland.bbclient.dagger.component.DaggerActivityComponent;
-import com.yetland.bbclient.dagger.module.ActivityModule;
+import com.yetland.base.base.BasePresenter;
+import com.yetland.bbclient.dagger.BaseAppDaggerActivity;
 
 import javax.inject.Inject;
 
 /**
  * Author: Yet_land
  * Date: 2018/9/29.
+ *
+ * @author YETLAND
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseAppDaggerActivity {
 
     @Inject
     MainModel mMainModel;
@@ -52,13 +52,12 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void inject() {
-        ActivityComponent activityComponent =
-                DaggerActivityComponent.builder()
-                        .appComponent(mAppComponent)
-                        .dataComponent(mDataComponent)
-                        .activityModule(new ActivityModule(this))
-                        .build();
-        activityComponent.inject(this);
+    protected void injectActivity() {
+        mActivityComponent.inject(this);
+    }
+
+    @Override
+    protected BasePresenter getPresenter() {
+        return null;
     }
 }
