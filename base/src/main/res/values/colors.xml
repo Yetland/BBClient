@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="app_theme_color">#F88E2A</color>
+    <color name="app_theme_color_sup">#F95822</color>
     <color name="app_background_color">#f2f2f2</color>
     <color name="app_normal_text_color">#3c3c3c</color>
     <color name="app_divider_color">#eeeeee</color>

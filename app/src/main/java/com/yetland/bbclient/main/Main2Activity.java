@@ -1,15 +1,18 @@
 package com.yetland.bbclient.main;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.yetland.base.base.BaseMvpActivity;
+import com.yetland.base.base.BasePresenter;
 import com.yetland.bbclient.R;
 
-public class Main2Activity extends AppCompatActivity {
+/**
+ * @author YETLAND
+ */
+public class Main2Activity extends BaseMvpActivity {
 
     private TextView mTextMessage;
 
@@ -36,13 +39,40 @@ public class Main2Activity extends AppCompatActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+    protected String getTitleText() {
+        return null;
+    }
 
+    @Override
+    protected boolean isShowTitleBar() {
+        return false;
+    }
+
+    @Override
+    protected void init() {
+
+    }
+
+    @Override
+    protected void findViews() {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main2;
+    }
+
+    @Override
+    protected void inject() {
+
+    }
+
+    @Override
+    protected BasePresenter getPresenter() {
+        return null;
     }
 
 }
