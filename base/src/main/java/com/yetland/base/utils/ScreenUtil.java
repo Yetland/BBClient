@@ -83,13 +83,12 @@ public class ScreenUtil {
         float targetScaledDensity = targetDensity * (appScaledDensity / appDensity);
         int targetDensityDpi = (int) (160 * targetDensity);
 
-        /**
-         *
-         * 最后在这里将修改过后的值赋给系统参数
-         *
-         * 只修改Activity的density值
-         */
+        /*
 
+          最后在这里将修改过后的值赋给系统参数
+
+          只修改Activity的density值
+         */
         DisplayMetrics activityDisplayMetrics = activity.getResources().getDisplayMetrics();
         activityDisplayMetrics.density = targetDensity;
         activityDisplayMetrics.scaledDensity = targetScaledDensity;
